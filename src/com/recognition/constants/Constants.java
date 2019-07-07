@@ -1,6 +1,7 @@
 package com.recognition.constants;
 
 public class Constants {
+  // Not able to instantiate it
   private Constants(){}
 
   public static final String APPLICATION_NAME = "Face Recognition";
