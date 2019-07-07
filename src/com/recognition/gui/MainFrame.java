@@ -47,7 +47,7 @@ public class MainFrame extends JFrame {
         if(fileChooser.showOpenDialog(MainFrame.this) == JFileChooser.APPROVE_OPTION){
           MainFrame.this.file = fileChooser.getSelectedFile();
           // load the image
-          System.out.println(MainFrame.this.file);
+          System.out.println("Image url: " + MainFrame.this.file);
           MainFrame.this.imagePanel.loadImage(MainFrame.this.file);
         }
       }
