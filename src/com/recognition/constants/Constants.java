@@ -8,6 +8,6 @@ public class Constants {
   public static final int FRAME_WIDTH = 800;
   public static final int FRAME_HEIGTH = 600;
   public static final int IMAGE_LABEL_BORDER = 30;
-  public static final String CASCADE_CLASSIFIER = "C:\\java\\OpenCVApplication\\images";
+  public static final String CASCADE_CLASSIFIER = "C:\\java\\OpenCVApplication\\images\\";
 
 }
