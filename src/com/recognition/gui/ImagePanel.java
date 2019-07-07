@@ -9,6 +9,7 @@ import java.io.File;
 public class ImagePanel extends JPanel{
   private static final long serialVersionUID = 1L;
   private JLabel imageLabel;
+  private ImageIcon transformedImageIcon;
 
   public ImagePanel(){
     this.imageLabel = new JLabel();
