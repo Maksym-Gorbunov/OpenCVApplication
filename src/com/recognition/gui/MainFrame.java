@@ -2,7 +2,6 @@ package com.recognition.gui;
 
 import com.recognition.algoritm.FaceDetection;
 import com.recognition.constants.Constants;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;
@@ -18,17 +17,13 @@ public class MainFrame extends JFrame {
 
   public MainFrame(){
     super(Constants.APPLICATION_NAME);
-
     setJMenuBar(createMenuBar());
 
     this.imagePanel = new ImagePanel();
     this.fileChooser = new JFileChooser();
     this.faceDetection = new FaceDetection();
 
-    panel = new JPanel(new BorderLayout())
-
-    imagePanel.add(imagePanel, BorderLayout.CENTER);
-
+    add(imagePanel, BorderLayout.CENTER);
     setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGTH);
     setVisible(true);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
