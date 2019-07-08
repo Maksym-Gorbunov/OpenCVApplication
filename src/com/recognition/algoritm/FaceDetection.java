@@ -38,5 +38,6 @@ public class FaceDetection {
   }
 
   private BufferedImage convertMatToImage(Mat image) {
+    // converter
   }
 }
