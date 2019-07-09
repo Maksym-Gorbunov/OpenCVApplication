@@ -56,6 +56,7 @@ public class MainFrame extends JFrame {
       @Override
       public void actionPerformed(ActionEvent e) {
         // detect algorithm
+        MainFrame.this.faceDetection.detectFaces(MainFrame.this.file, MainFrame.this.imagePanel);
       }
     });
     exitMenuItem.addActionListener(new ActionListener() {
