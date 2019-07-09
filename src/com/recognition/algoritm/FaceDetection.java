@@ -2,6 +2,7 @@ package com.recognition.algoritm;
 
 import com.recognition.constants.Constants;
 import com.recognition.gui.ImagePanel;
+//import org.opencv.*;
 import org.opencv.core.*;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
