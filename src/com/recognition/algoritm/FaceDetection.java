@@ -24,7 +24,9 @@ public class FaceDetection {
     Mat image = Imgcodecs.imread(file.getAbsolutePath(), Imgcodecs.IMREAD_COLOR);
 
     MatOfRect faceDetections = new MatOfRect();
-    cascadeClassifier.detectMultiScale(image, faceDetections);
+    //cascadeClassifier.detectMultiScale(image, faceDetections);
+    cascadeClassifier.detectMultiScale(image, faceDetections, 1.2, 3, 10,
+            new Size(40, 40), new Size(500, 500));
 
     // Paint rectangles around recognized faces
     for (Rect rect : faceDetections.toArray()) {
