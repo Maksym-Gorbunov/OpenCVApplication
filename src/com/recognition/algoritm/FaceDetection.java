@@ -8,7 +8,7 @@ import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 
 import java.awt.image.BufferedImage;
-
+import java.awt.image.DataBufferByte;
 import java.io.File;
 
 public class FaceDetection {
@@ -37,7 +37,21 @@ public class FaceDetection {
     imagePanel.updadeImage(bufferedImage);
   }
 
-  private BufferedImage convertMatToImage(Mat image) {
-    // converter
+  // Matrix image to image
+  private BufferedImage convertMatToImage(Mat mat) {
+    // case greyscale image
+    int type = BufferedImage.TYPE_BYTE_GRAY;
+    // case color image
+    if (mat.channels() > 1) {
+      type = BufferedImage.TYPE_3BYTE_BGR;
+    }
+
+    int bufferSize = mat.channels() * mat.cols() * mat.rows();
+    byte[] bytes = new byte[bufferSize];
+    mat.get(0, 0, bytes);
+    BufferedImage image = new BufferedImage(mat.cols(), mat.rows(), type);
+    final byte[] targetPixel = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
+    System.arraycopy(bytes, 0, targetPixel, 0, bytes.length);
+    return image;
   }
 }
