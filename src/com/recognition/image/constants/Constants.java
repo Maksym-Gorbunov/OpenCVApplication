@@ -1,4 +1,4 @@
-package com.recognition.constants;
+package com.recognition.image.constants;
 
 public class Constants {
   // Not able to instantiate it

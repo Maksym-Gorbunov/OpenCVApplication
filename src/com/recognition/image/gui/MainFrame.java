@@ -1,7 +1,7 @@
-package com.recognition.gui;
+package com.recognition.image.gui;
 
-import com.recognition.algoritm.FaceDetection;
-import com.recognition.constants.Constants;
+import com.recognition.image.algoritm.FaceDetection;
+import com.recognition.image.constants.Constants;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;

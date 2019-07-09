@@ -1,7 +1,7 @@
-package com.recognition.algoritm;
+package com.recognition.image.algoritm;
 
-import com.recognition.constants.Constants;
-import com.recognition.gui.ImagePanel;
+import com.recognition.image.constants.Constants;
+import com.recognition.image.gui.ImagePanel;
 //import org.opencv.*;
 import org.opencv.core.*;
 import org.opencv.imgcodecs.Imgcodecs;

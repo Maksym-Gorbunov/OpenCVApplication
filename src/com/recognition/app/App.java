@@ -1,6 +1,6 @@
 package com.recognition.app;
 
-import com.recognition.gui.MainFrame;
+import com.recognition.image.gui.MainFrame;
 
 import javax.swing.*;
 

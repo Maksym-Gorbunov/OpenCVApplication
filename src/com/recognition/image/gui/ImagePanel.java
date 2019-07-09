@@ -1,6 +1,6 @@
-package com.recognition.gui;
+package com.recognition.image.gui;
 
-import com.recognition.constants.Constants;
+import com.recognition.image.constants.Constants;
 import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Image;
