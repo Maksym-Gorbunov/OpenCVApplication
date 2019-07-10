@@ -30,7 +30,8 @@ public class MainFrame2 extends JFrame {
     VideoCapture videoCapture = new VideoCapture(0);
 
     if (videoCapture.isOpened()) {
-      while (true) {
+      for (int i = 0; i < 50; i++) {
+        System.gc();
         videoCapture.read(webcamImage);
         if (!webcamImage.empty()) {
           setSize(webcamImage.width() + 50, webcamImage.height() + 70);
@@ -43,5 +44,21 @@ public class MainFrame2 extends JFrame {
         }
       }
     }
+
+
+//    if (videoCapture.isOpened()) {
+//      while (true) {
+//        videoCapture.read(webcamImage);
+//        if (!webcamImage.empty()) {
+//          setSize(webcamImage.width() + 50, webcamImage.height() + 70);
+//          webcamImage = detector.detect(webcamImage);
+//          cameraPanel.convertMatToImage(webcamImage);
+//          cameraPanel.repaint(); // update camera panel
+//        } else {
+//          System.out.println("Problem");
+//          break;
+//        }
+//      }
+//    }
   }
 }
