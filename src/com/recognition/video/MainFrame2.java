@@ -29,8 +29,11 @@ public class MainFrame2 extends JFrame {
     Mat webcamImage = new Mat();
     VideoCapture videoCapture = new VideoCapture(0);
 
+
+
+    /*
     if (videoCapture.isOpened()) {
-      for (int i = 0; i < 50; i++) {
+      for (int i = 0; i < 8; i++) {
         System.gc();
         videoCapture.read(webcamImage);
         if (!webcamImage.empty()) {
@@ -44,6 +47,17 @@ public class MainFrame2 extends JFrame {
         }
       }
     }
+    */
+
+
+    System.gc();
+    for (int i = 0; i < 200; i++) {
+      cameraPanel.repaint();
+
+    }
+    videoCapture.read(webcamImage);
+    setSize(webcamImage.width() + 50, webcamImage.height() + 70);
+    cameraPanel.convertMatToImage(webcamImage);
 
 
 //    if (videoCapture.isOpened()) {
