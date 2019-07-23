@@ -42,9 +42,7 @@
                         <preferred-size width="320" height="240"/>
                       </grid>
                     </constraints>
-                    <properties>
-                      <background color="-887088"/>
-                    </properties>
+                    <properties/>
                     <border type="none"/>
                     <children/>
                   </grid>

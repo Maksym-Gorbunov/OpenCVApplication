@@ -1,6 +1,7 @@
 package swing;
 
 import com.recognition.image.constants.Constants;
+import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
 import org.opencv.imgcodecs.Imgcodecs;
@@ -16,21 +17,20 @@ import java.io.ByteArrayInputStream;
 
 public class Webcam extends JFrame {
   private static final long serialVersionUID = 1L;
-//  private JPanel panelWebCam;
-//  private JPanel cameraPanel;
-//  private JButton startButton;
-//  private JButton pauseButton;
-
-  public Webcam() {
-    super(Constants.APPLICATION_NAME);
-//    initComponents();
-    setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGTH);
-    setVisible(true);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setLocationRelativeTo(this);
+  private JButton startButton;
+  private JButton pauseButton;
+  private JButton testButton;
+  private JPanel webcamPanel;
 
 
-    App.startButton.addActionListener(new ActionListener() {
+  public Webcam(JButton startButton, JButton pauseButton, JButton testButton, JPanel webcamPanel) {
+    this.startButton = startButton;
+    this.pauseButton = pauseButton;
+    this.testButton = testButton;
+    this.webcamPanel = webcamPanel;
+
+
+    startButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         System.out.println("Start...");
@@ -40,23 +40,23 @@ public class Webcam extends JFrame {
         t.setDaemon(true);
         myThread.runnable = true;
         t.start();
-        App.startButton.setEnabled(false);  //start button
-        App.pauseButton.setEnabled(true);  // stop button
+        startButton.setEnabled(false);  //start button
+        pauseButton.setEnabled(true);  // stop button
       }
     });
 
-    App.pauseButton.addActionListener(new ActionListener() {
+    pauseButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         System.out.println("Pause...");
         myThread.runnable = false;
-        App.pauseButton.setEnabled(false);
-        App.startButton.setEnabled(true);
+        pauseButton.setEnabled(false);
+        startButton.setEnabled(true);
         webSource.release();
       }
     });
 
-    App.testButton.addActionListener(new ActionListener() {
+    testButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         JOptionPane.showMessageDialog(null, "Test...", "Test title", JOptionPane.QUESTION_MESSAGE);
@@ -87,7 +87,7 @@ public class Webcam extends JFrame {
               webSource.retrieve(frame);
               Imgcodecs.imencode(".bmp", frame, mem);
               BufferedImage buff = ImageIO.read(new ByteArrayInputStream(mem.toArray()));
-              Graphics g = App.webcamPanel.getGraphics();
+              Graphics g = webcamPanel.getGraphics();
               if (g.drawImage(buff, 0, 0, getWidth(), getHeight() - 150, 0, 0, buff.getWidth(), buff.getHeight(), null))
                 if (runnable == false) {
                   System.out.println("Going to wait()");
@@ -102,3 +102,4 @@ public class Webcam extends JFrame {
     }
   }
 }
+
