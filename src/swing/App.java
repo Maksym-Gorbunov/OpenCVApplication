@@ -22,6 +22,7 @@ public class App extends JPanel {
   private JPanel One;
   private JPanel Two;
   private Webcam webcam;
+  private Graphics g;
 
 
   public static void main(String[] args) {
@@ -38,7 +39,7 @@ public class App extends JPanel {
 
   public App() {
     createUIComponents();
-    webcam = new Webcam(startButton, pauseButton, testButton, webcamPanel);
+    webcam = new Webcam(startButton, pauseButton, testButton, webcamPanel, g);
   }
 
 
