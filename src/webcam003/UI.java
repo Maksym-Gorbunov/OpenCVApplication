@@ -24,28 +24,11 @@ public class UI extends JFrame {
 
   public UI() {
     super(Constants.APPLICATION_NAME);
-    setJMenuBar(createMenuBar());
-
-    this.camera = new JPanel();
-    camera.setBorder(new EmptyBorder(10, 10, 10, 10));
-    camera.setBackground(Color.ORANGE);
-
-    this.panelWebCam = new JPanel();
-    panelWebCam.setBackground(Color.BLUE);
-    panelWebCam.setPreferredSize(new Dimension(320, 240));
-
-    this.startBtn = new JButton("Start");
-    this.pauseBtn = new JButton("Pause");
-
-    this.getContentPane().add(camera);
-    camera.add(panelWebCam, BorderLayout.CENTER);
-    camera.add(startBtn, BorderLayout.PAGE_END);
-    camera.add(pauseBtn, BorderLayout.PAGE_END);
+    initComponents();
     setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGTH);
     setVisible(true);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(this);
-
 
     startBtn.addActionListener(new ActionListener() {
       @Override
@@ -72,6 +55,29 @@ public class UI extends JFrame {
         webSource.release();
       }
     });
+  }
+
+
+  //Initialize gui components
+  private void initComponents() {
+    setJMenuBar(createMenuBar());
+
+    this.camera = new JPanel();
+    camera.setBorder(new EmptyBorder(10, 10, 10, 10));
+    camera.setBackground(Color.ORANGE);
+
+    this.panelWebCam = new JPanel();
+    panelWebCam.setBackground(Color.BLUE);
+    panelWebCam.setPreferredSize(new Dimension(320, 240));
+
+    this.startBtn = new JButton("Start");
+    this.pauseBtn = new JButton("Pause");
+    this.setContentPane(camera);
+    //this.getContentPane().add(camera);
+    camera.add(panelWebCam, BorderLayout.CENTER);
+    camera.add(startBtn, BorderLayout.PAGE_END);
+    camera.add(pauseBtn, BorderLayout.PAGE_END);
+    //this.pack();
   }
 
 
