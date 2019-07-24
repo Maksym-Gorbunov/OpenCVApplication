@@ -21,6 +21,11 @@ public class UI extends JFrame {
   private JPanel camera;
   private JButton startBtn;
   private JButton pauseBtn;
+  private JTabbedPane tabbedPane1;
+  private JPanel page1;
+  private JPanel page2;
+  private JPanel mainPanel;
+  private JPanel buttonsPannel;
 
   public UI() {
     super(Constants.APPLICATION_NAME);
@@ -74,6 +79,7 @@ public class UI extends JFrame {
     this.pauseBtn = new JButton("Pause");
     this.setContentPane(camera);
     //this.getContentPane().add(camera);
+    camera.setPreferredSize(new Dimension(320, 240));
     camera.add(panelWebCam, BorderLayout.CENTER);
     camera.add(startBtn, BorderLayout.PAGE_END);
     camera.add(pauseBtn, BorderLayout.PAGE_END);
@@ -122,7 +128,8 @@ public class UI extends JFrame {
               Imgcodecs.imencode(".bmp", frame, mem);
               BufferedImage buff = ImageIO.read(new ByteArrayInputStream(mem.toArray()));
               Graphics g = camera.getGraphics();
-              if (g.drawImage(buff, 0, 0, getWidth(), getHeight() - 150, 0, 0, buff.getWidth(), buff.getHeight(), null))
+              if (g.drawImage(buff, 100, 0, 320, 240, 100, 0, buff.getWidth(), buff.getHeight(), null))
+//              if (g.drawImage(buff, 0, 0, getWidth()/2, getHeight() - 150, 0, 0, buff.getWidth(), buff.getHeight(), null))
                 if (runnable == false) {
                   System.out.println("Going to wait()");
                   this.wait();
