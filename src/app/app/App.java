@@ -2,7 +2,6 @@ package app.app;
 
 import app.gui.Gui;
 import org.opencv.core.Core;
-
 import javax.swing.*;
 
 public class App {
