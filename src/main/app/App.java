@@ -1,6 +1,6 @@
-package app.app;
+package main.app;
 
-import app.gui.Gui;
+import main.gui.Gui;
 import org.opencv.core.Core;
 import javax.swing.*;
 

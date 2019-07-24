@@ -1,24 +1,8 @@
-package app.gui;
+package main.gui;
 
 import javax.swing.*;
 
-import app.page1.Page1;
-import com.recognition.image.constants.Constants;
-import org.opencv.core.Core;
-import org.opencv.core.Mat;
-import org.opencv.core.MatOfByte;
-import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.videoio.VideoCapture;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
+import main.pages.page1.Page1;
 
 
 public class Gui extends JFrame {

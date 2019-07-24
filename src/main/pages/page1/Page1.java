@@ -1,14 +1,10 @@
-package app.page1;
+package main.pages.page1;
 
-import app.gui.Gui;
-import com.recognition.image.constants.Constants;
-import org.opencv.core.Core;
+import main.pages.Pages;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.videoio.VideoCapture;
-import swing.App;
-import swing.Webcam;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -18,7 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 
-public class Page1 extends JFrame {
+public class Page1 extends JFrame implements Pages {
   private static final long serialVersionUID = 1L;
   private JButton startButton;
   private JButton pauseButton;
