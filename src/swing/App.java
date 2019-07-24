@@ -155,7 +155,7 @@ public class App extends JPanel {
               Imgcodecs.imencode(".bmp", frame, mem);
               BufferedImage buff = ImageIO.read(new ByteArrayInputStream(mem.toArray()));
               Graphics g = webcamPanel.getGraphics();
-              if (g.drawImage(buff, 0, 0, getWidth(), getHeight() - 150, 0, 0, buff.getWidth(), buff.getHeight(), null))
+              if (g.drawImage(buff, 0, 0, 320, 240, 0, 0, buff.getWidth(), buff.getHeight(), null))
                 if (runnable == false) {
                   System.out.println("Going to wait()");
                   this.wait();
