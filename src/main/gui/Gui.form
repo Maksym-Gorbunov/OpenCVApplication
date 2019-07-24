@@ -44,7 +44,9 @@
                         <preferred-size width="640" height="480"/>
                       </grid>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <background color="-6974059"/>
+                    </properties>
                     <border type="line">
                       <color color="-13401089"/>
                     </border>
@@ -52,7 +54,7 @@
                   </grid>
                 </children>
               </grid>
-              <grid id="c0c49" binding="buttonsPannel1" layout-manager="FlowLayout" hgap="50" vgap="50" flow-align="1">
+              <grid id="c0c49" binding="buttonsPannel1" layout-manager="FlowLayout" hgap="50" vgap="10" flow-align="1">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
