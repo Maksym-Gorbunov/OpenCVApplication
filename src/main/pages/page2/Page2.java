@@ -1,6 +1,8 @@
 package main.pages.page2;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Page2 {
   private JPanel labelsPanel2;
@@ -29,6 +31,28 @@ public class Page2 {
     this.emailTextField2 = emailTextField2;
     this.surnameTextField2 = surnameTextField2;
 
+    addContaktButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        String name = nameTextField2.getText();
+        String surname = surnameTextField2.getText();
+        String email = emailTextField2.getText();
+        String phone = phoneTextField2.getText();
+        // TODO: 7/25/2019 why add empty contact??? 
+        if (name != "" || surname != "" || email != "" || phone != "") {
+          contactBook.getContacts().add(new Contact(name, surname, email, phone));
+        }
+        System.out.println("New contact was added successfully!");
 
+      }
+    });
+
+    printAllContaktsButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        contactBook.printAllContacts();
+        System.out.println("Total: " + contactBook.getContacts().size());
+      }
+    });
   }
 }

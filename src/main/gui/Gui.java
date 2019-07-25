@@ -5,6 +5,9 @@ import javax.swing.*;
 import main.pages.page1.Page1;
 import main.pages.page2.Page2;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 public class Gui extends JFrame {
   private static final long serialVersionUID = 1L;
@@ -48,7 +51,8 @@ public class Gui extends JFrame {
     setVisible(true);
 
     page1 = new Page1(startButton1, pauseButton1, testButton1, webcamPanel1);
-    page2 = new Page2();
+    page2 = new Page2(addContaktButton, printAllContaktsButton, testButton2, nameTextField2, phoneTextField2, emailTextField2, surnameTextField2);
+
 
 
   }

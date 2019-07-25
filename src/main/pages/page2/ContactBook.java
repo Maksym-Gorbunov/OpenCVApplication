@@ -6,9 +6,8 @@ import java.util.List;
 public class ContactBook {
   private List<Contact> contacts = new ArrayList<>();
 
-  public void addContact(Contact contact) {
+  public void add(Contact contact) {
     contacts.add(contact);
-    System.out.println("New contact was added successfully!");
   }
 
   public List<Contact> getContacts() {
