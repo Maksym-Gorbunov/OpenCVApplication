@@ -18,6 +18,20 @@ public class Gui extends JFrame {
   private JButton testButton1;
   private JPanel rootPanel;
   private JPanel webcamPanel1;
+  private JPanel labelsPanel2;
+  private JPanel fieldsPanel2;
+  private JPanel buttonsPanel2;
+  private JLabel nameLabel2;
+  private JLabel emailLabel2;
+  private JLabel phoneLabel2;
+  private JLabel surnameLabel2;
+  private JButton addContaktButton;
+  private JButton printAllContaktsButton;
+  private JButton button3;
+  private JTextField nameTextField2;
+  private JTextField phoneTextField2;
+  private JTextField emailTextField2;
+  private JTextField surnameTextField2;
   private Page1 page1;
 
   public Gui() {
