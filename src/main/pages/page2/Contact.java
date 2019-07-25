@@ -1,6 +1,7 @@
 package main.pages.page2;
 
 public class Contact {
+  private static final long serialVersionUID = 1L;
   private String name;
   private String surname;
   private String email;
@@ -11,6 +12,34 @@ public class Contact {
     this.surname = surname;
     this.email = email;
     this.phone = phone;
+  }
+
+  @Override
+  public String toString() {
+    return "Contact{" +
+            "name='" + name + '\'' +
+            ", surname='" + surname + '\'' +
+            ", email='" + email + '\'' +
+            ", phone='" + phone + '\'' +
+            '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Contact contact = (Contact) o;
+
+    if (!email.equals(contact.email)) return false;
+    return phone.equals(contact.phone);
+  }
+
+  @Override
+  public int hashCode() {
+    int result = email.hashCode();
+    result = 31 * result + phone.hashCode();
+    return result;
   }
 
   public String getName() {

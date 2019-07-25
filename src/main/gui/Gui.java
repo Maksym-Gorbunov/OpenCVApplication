@@ -3,6 +3,7 @@ package main.gui;
 import javax.swing.*;
 
 import main.pages.page1.Page1;
+import main.pages.page2.Page2;
 
 
 public class Gui extends JFrame {
@@ -18,6 +19,7 @@ public class Gui extends JFrame {
   private JButton testButton1;
   private JPanel rootPanel;
   private JPanel webcamPanel1;
+
   private JPanel labelsPanel2;
   private JPanel fieldsPanel2;
   private JPanel buttonsPanel2;
@@ -27,12 +29,13 @@ public class Gui extends JFrame {
   private JLabel surnameLabel2;
   private JButton addContaktButton;
   private JButton printAllContaktsButton;
-  private JButton button3;
+  private JButton testButton2;
   private JTextField nameTextField2;
   private JTextField phoneTextField2;
   private JTextField emailTextField2;
   private JTextField surnameTextField2;
   private Page1 page1;
+  private Page2 page2;
 
   public Gui() {
     super("Application");
@@ -45,6 +48,7 @@ public class Gui extends JFrame {
     setVisible(true);
 
     page1 = new Page1(startButton1, pauseButton1, testButton1, webcamPanel1);
+    page2 = new Page2();
 
 
   }

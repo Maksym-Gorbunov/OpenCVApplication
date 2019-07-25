@@ -201,10 +201,10 @@
                       <text value="Print all contakts"/>
                     </properties>
                   </component>
-                  <component id="55935" class="javax.swing.JButton" binding="button3" default-binding="true">
+                  <component id="55935" class="javax.swing.JButton" binding="testButton2">
                     <constraints/>
                     <properties>
-                      <text value="Button"/>
+                      <text value="Test2"/>
                     </properties>
                   </component>
                 </children>
