@@ -45,6 +45,13 @@ public class Page2 {
     dynamicAddContactButton();
     dynamicRemoveContactButton();
     dynamicEditButton();
+    // toDO dynamic save on empty fields
+    // clean code
+    // fix names
+    // cant add contact if exist
+    // create universal methods with args for dynamic listeners
+
+    //    dynamicSaveButton();
     dynamicPrintAllContactsButton();
 
     addListeners();
@@ -52,9 +59,12 @@ public class Page2 {
     contactBook.add(new Contact("Max", "Fry", "max@mail.com", "0766533"));
     contactBook.add(new Contact("Bob", "Person", "bob@mail.com", "0765013"));
     contactBook.getContacts().stream().forEach(c -> contactsComboBox.addItem(c));
-    //contactsComboBox.setSelectedIndex(0);
+    init();
+  }
 
+  private void init() {
     saveButton.setVisible(false);
+    cancelButton.setVisible(false);
   }
 
 
@@ -82,17 +92,19 @@ public class Page2 {
       public void actionPerformed(ActionEvent e) {
         contactBook.printAllContacts();
         System.out.println("Total: " + contactBook.getContacts().size());
+        clearAllTextFields();
       }
     });
 
     deleteButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        if (contactsComboBox.getItemCount() > 0) {
+//        if (contactsComboBox.getItemCount() > 0) {
           contactBook.remove(contactsComboBox.getSelectedIndex());
           contactsComboBox.removeItem(contactsComboBox.getSelectedItem());
           System.out.println("Contact was successfully removed!");
-        }
+//        }
+        clearAllTextFields();
       }
     });
 
@@ -137,7 +149,11 @@ public class Page2 {
       public void actionPerformed(ActionEvent e) {
         edit = false;
         clearAllTextFields();
+
+        saveButton.setVisible(false);
         cancelButton.setVisible(false);
+        contactsComboBox.setEnabled(true);
+        gui.getPagesPanel().setEnabled(true);
       }
     });
   }
@@ -292,4 +308,45 @@ public class Page2 {
     }
   };
   // Print contacts button dynamic end
+
+
+  // Save button dynamic start
+  private void dynamicSaveButton() {
+    this.saveButton.setEnabled(false);
+    new Thread(saveTarget).start();
+    nameTextField.addActionListener(saveActionListener);
+  }
+
+  final ActionListener saveActionListener = new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+      if (e.getActionCommand().equalsIgnoreCase("Enable")) {
+        saveButton.setEnabled(true);
+      } else if (e.getActionCommand().equalsIgnoreCase("Disable")) {
+        saveButton.setEnabled(false);
+      }
+    }
+  };
+
+  final Runnable saveTarget = new Runnable() {
+    public void run() {
+      while (true) {
+        final ActionListener[] listeners = nameTextField.getActionListeners();
+        for (ActionListener listener : listeners) {
+          if ((nameTextField.getText().trim().length() > 0)
+                  && (surnameTextField.getText().trim().length() > 0)
+                  && (emailTextField.getText().trim().length() > 0)
+                  && (phoneTextField.getText().trim().length() > 0)) {
+            final ActionEvent event = new ActionEvent(nameTextField, 1, "Enable");
+            listener.actionPerformed(event);
+          } else {
+            final ActionEvent event = new ActionEvent(nameTextField, 1, "Disable");
+            listener.actionPerformed(event);
+          }
+        }
+      }
+    }
+  };
+  // Save button dynamic end
+
+
 }

@@ -220,7 +220,7 @@
                       <text value="Save"/>
                     </properties>
                   </component>
-                  <component id="5e9c1" class="javax.swing.JButton" binding="cancelButton" default-binding="true">
+                  <component id="5e9c1" class="javax.swing.JButton" binding="cancelButton2">
                     <constraints/>
                     <properties>
                       <text value="Cancel"/>
