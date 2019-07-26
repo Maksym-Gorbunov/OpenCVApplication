@@ -16,12 +16,13 @@ public class Contact {
 
   @Override
   public String toString() {
-    return "Contact{" +
-            "name='" + name + '\'' +
-            ", surname='" + surname + '\'' +
-            ", email='" + email + '\'' +
-            ", phone='" + phone + '\'' +
-            '}';
+//    return "Contact{" +
+//            "name='" + name + '\'' +
+//            ", surname='" + surname + '\'' +
+//            ", email='" + email + '\'' +
+//            ", phone='" + phone + '\'' +
+//            '}';
+    return name + " " + surname + ", mail: " + email + ", phone: " + phone;
   }
 
   @Override

@@ -1,6 +1,7 @@
 package main.pages.page2;
 
 import main.gui.Gui;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,12 +19,12 @@ public class Page2 {
 //  private JLabel surnameLabel;
   private JButton addContactButton;
   private JButton printAllContactsButton;
-  private JButton testButton;
+  private JButton deleteButton;
   private JTextField nameTextField;
   private JTextField phoneTextField;
   private JTextField emailTextField;
   private JTextField surnameTextField;
-  private JComboBox contactsComboBox;
+  private JComboBox<Contact> contactsComboBox;
 
   private ContactBook contactBook = new ContactBook();
   private Gui gui;
@@ -36,11 +37,19 @@ public class Page2 {
     this.emailTextField = gui.getEmailTextField2();
     this.addContactButton = gui.getAddContactButton2();
     this.printAllContactsButton = gui.getPrintAllContactsButton2();
-    this.testButton = gui.getTestButton2();
+    this.deleteButton = gui.getDeleteButton2();
     this.contactsComboBox = gui.getContactsComboBox2();
 
     dynamicAddContactButton();
     addListeners();
+
+
+    contactBook.add(new Contact("Max", "Fry", "max@mail.com", "0766533"));
+    contactBook.add(new Contact("Bob", "Person", "bob@mail.com", "0765013"));
+    contactBook.getContacts().stream().forEach(c -> contactsComboBox.addItem(c));
+    //contactsComboBox.setSelectedIndex(0);
+
+
   }
 
   private void dynamicAddContactButton() {
@@ -59,7 +68,9 @@ public class Page2 {
         String email = emailTextField.getText();
         String phone = phoneTextField.getText();
         if (!name.equals("") && !surname.equals("") && !email.equals("") && !phone.equals("")) {
-          contactBook.getContacts().add(new Contact(name, surname, email, phone));
+          Contact contact = new Contact(name, surname, email, phone);
+          contactsComboBox.addItem(contact);
+          contactBook.add(contact);
           System.out.println("New contact was added successfully!");
         }
         clearAllTextFields();
@@ -71,6 +82,17 @@ public class Page2 {
       public void actionPerformed(ActionEvent e) {
         contactBook.printAllContacts();
         System.out.println("Total: " + contactBook.getContacts().size());
+      }
+    });
+
+    deleteButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (contactsComboBox.getItemCount() > 0) {
+          contactBook.remove(contactsComboBox.getSelectedIndex());
+          contactsComboBox.removeItem(contactsComboBox.getSelectedItem());
+          System.out.println("Contact was successfully removed!");
+        }
       }
     });
   }

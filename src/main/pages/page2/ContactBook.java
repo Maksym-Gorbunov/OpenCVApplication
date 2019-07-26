@@ -10,6 +10,10 @@ public class ContactBook {
     contacts.add(contact);
   }
 
+  public void remove(int index) {
+    contacts.remove(index);
+  }
+
   public List<Contact> getContacts() {
     return contacts;
   }

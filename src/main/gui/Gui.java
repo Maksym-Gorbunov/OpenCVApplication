@@ -31,7 +31,7 @@ public class Gui extends JFrame {
   private JLabel surnameLabel2;
   private JButton addContactButton2;
   private JButton printAllContactsButton2;
-  private JButton testButton2;
+  private JButton deleteButton2;
   private JTextField nameTextField2;
   private JTextField phoneTextField2;
   private JTextField emailTextField2;
@@ -52,7 +52,7 @@ public class Gui extends JFrame {
     setVisible(true);
 
     page1 = new Page1(startButton1, pauseButton1, testButton1, webcamPanel1);
-//    page2 = new Page2(addContactButton2, printAllContactsButton2, testButton2, nameTextField2, phoneTextField2, emailTextField2, surnameTextField2);
+//    page2 = new Page2(addContactButton2, printAllContactsButton2, deleteButton2, nameTextField2, phoneTextField2, emailTextField2, surnameTextField2);
     page2 = new Page2(Gui.this);
 
   }
@@ -139,8 +139,8 @@ public class Gui extends JFrame {
     return printAllContactsButton2;
   }
 
-  public JButton getTestButton2() {
-    return testButton2;
+  public JButton getDeleteButton2() {
+    return deleteButton2;
   }
 
   public JTextField getNameTextField2() {
