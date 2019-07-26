@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 public class Page2 {
   private static final long serialVersionUID = 1L;
 
-  private JButton addContactButton;
+  private JButton addButton;
   private JButton printAllContactsButton;
   private JButton deleteButton;
   private JButton editButton;
@@ -31,7 +31,7 @@ public class Page2 {
     this.surnameTextField = gui.getSurnameTextField2();
     this.phoneTextField = gui.getPhoneTextField2();
     this.emailTextField = gui.getEmailTextField2();
-    this.addContactButton = gui.getAddContactButton2();
+    this.addButton = gui.getAddContactButton2();
     this.editButton = gui.getEditButton2();
     this.saveButton = gui.getSaveButton2();
     this.printAllContactsButton = gui.getPrintAllContactsButton2();
@@ -48,11 +48,19 @@ public class Page2 {
     contactBook.add(new Contact("Bob", "Person", "bob@mail.com", "0765013"));
     contactBook.getContacts().stream().forEach(c -> contactsComboBox.addItem(c));
     //contactsComboBox.setSelectedIndex(0);
+
+    saveButton.setVisible(false);
+    edit();
+
+  }
+
+  public void edit() {
+
   }
 
   // Add elements listeners
   private void addListeners() {
-    addContactButton.addActionListener(new ActionListener() {
+    addButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         String name = nameTextField.getText();
@@ -85,6 +93,47 @@ public class Page2 {
           contactsComboBox.removeItem(contactsComboBox.getSelectedItem());
           System.out.println("Contact was successfully removed!");
         }
+      }
+    });
+
+    editButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        Contact contact = (Contact) contactsComboBox.getSelectedItem();
+        nameTextField.setText(contact.getName());
+        surnameTextField.setText(contact.getSurname());
+        phoneTextField.setText(contact.getPhone());
+        emailTextField.setText(contact.getEmail());
+
+        addButton.setEnabled(false);
+        printAllContactsButton.setEnabled(false);
+        editButton.setEnabled(false);
+        saveButton.setVisible(true);
+        contactsComboBox.setEnabled(false);
+        gui.getPagePanel1().setEnabled(false);
+        gui.getPagePanel3().setEnabled(false);
+
+      }
+    });
+
+    saveButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        Contact contact = (Contact) contactsComboBox.getSelectedItem();
+        contact.setName(nameTextField.getText());
+        contact.setSurname(surnameTextField.getText());
+        contact.setPhone(phoneTextField.getText());
+        contact.setEmail(emailTextField.getText());
+        //toDo refresh boxlist
+
+        printAllContactsButton.setEnabled(true);
+        editButton.setEnabled(true);
+        saveButton.setVisible(false);
+        contactsComboBox.setEnabled(true);
+        gui.getPagePanel1().setEnabled(true);
+        gui.getPagePanel3().setEnabled(true);
+
+        clearAllTextFields();
       }
     });
   }
@@ -134,7 +183,7 @@ public class Page2 {
 
   // Add button dynamic start
   private void dynamicAddContactButton() {
-    this.addContactButton.setEnabled(false);
+    this.addButton.setEnabled(false);
     new Thread(addTarget).start();
     nameTextField.addActionListener(addActionListener);
   }
@@ -142,9 +191,9 @@ public class Page2 {
   final ActionListener addActionListener = new ActionListener() {
     public void actionPerformed(ActionEvent e) {
       if (e.getActionCommand().equalsIgnoreCase("Enable")) {
-        addContactButton.setEnabled(true);
+        addButton.setEnabled(true);
       } else if (e.getActionCommand().equalsIgnoreCase("Disable")) {
-        addContactButton.setEnabled(false);
+        addButton.setEnabled(false);
       }
     }
   };
