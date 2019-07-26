@@ -40,6 +40,7 @@ public class Gui extends JFrame {
   private JComboBox contactsComboBox2;
   private JButton editButton2;
   private JButton saveButton2;
+  private JButton cancelButton2;
 
   private Page1 page1;
   private Page2 page2;
@@ -151,6 +152,10 @@ public class Gui extends JFrame {
 
   public JButton getSaveButton2() {
     return saveButton2;
+  }
+
+  public JButton getCancelButton2() {
+    return cancelButton2;
   }
 
   public JTextField getNameTextField2() {

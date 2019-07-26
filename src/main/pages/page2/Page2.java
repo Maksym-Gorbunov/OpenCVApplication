@@ -15,6 +15,7 @@ public class Page2 {
   private JButton deleteButton;
   private JButton editButton;
   private JButton saveButton;
+  private JButton cancelButton;
   private JTextField nameTextField;
   private JTextField phoneTextField;
   private JTextField emailTextField;
@@ -23,6 +24,8 @@ public class Page2 {
 
   private ContactBook contactBook = new ContactBook();
   private Gui gui;
+
+  private boolean edit = false;
 
   // Constructor
   public Page2(final Gui gui) {
@@ -34,6 +37,7 @@ public class Page2 {
     this.addButton = gui.getAddContactButton2();
     this.editButton = gui.getEditButton2();
     this.saveButton = gui.getSaveButton2();
+    this.cancelButton = gui.getCancelButton2();
     this.printAllContactsButton = gui.getPrintAllContactsButton2();
     this.deleteButton = gui.getDeleteButton2();
     this.contactsComboBox = gui.getContactsComboBox2();
@@ -41,6 +45,7 @@ public class Page2 {
     dynamicAddContactButton();
     dynamicRemoveContactButton();
     dynamicEditButton();
+    dynamicPrintAllContactsButton();
 
     addListeners();
 
@@ -50,13 +55,8 @@ public class Page2 {
     //contactsComboBox.setSelectedIndex(0);
 
     saveButton.setVisible(false);
-    edit();
-
   }
 
-  public void edit() {
-
-  }
 
   // Add elements listeners
   private void addListeners() {
@@ -99,20 +99,17 @@ public class Page2 {
     editButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
+        edit = true;
         Contact contact = (Contact) contactsComboBox.getSelectedItem();
         nameTextField.setText(contact.getName());
         surnameTextField.setText(contact.getSurname());
         phoneTextField.setText(contact.getPhone());
         emailTextField.setText(contact.getEmail());
 
-        addButton.setEnabled(false);
-        printAllContactsButton.setEnabled(false);
-        editButton.setEnabled(false);
         saveButton.setVisible(true);
+        cancelButton.setVisible(true);
         contactsComboBox.setEnabled(false);
-        gui.getPagePanel1().setEnabled(false);
-        gui.getPagePanel3().setEnabled(false);
-
+        gui.getPagesPanel().setEnabled(false);
       }
     });
 
@@ -124,16 +121,23 @@ public class Page2 {
         contact.setSurname(surnameTextField.getText());
         contact.setPhone(phoneTextField.getText());
         contact.setEmail(emailTextField.getText());
-        //toDo refresh boxlist
 
-        printAllContactsButton.setEnabled(true);
-        editButton.setEnabled(true);
         saveButton.setVisible(false);
+        cancelButton.setVisible(false);
         contactsComboBox.setEnabled(true);
-        gui.getPagePanel1().setEnabled(true);
-        gui.getPagePanel3().setEnabled(true);
+        gui.getPagesPanel().setEnabled(true);
 
         clearAllTextFields();
+        edit = false;
+      }
+    });
+
+    cancelButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        edit = false;
+        clearAllTextFields();
+        cancelButton.setVisible(false);
       }
     });
   }
@@ -168,7 +172,7 @@ public class Page2 {
       while (true) {
         final ActionListener[] listeners = contactsComboBox.getActionListeners();
         for (ActionListener listener : listeners) {
-          if ((contactsComboBox.getItemCount() > 0)) {
+          if (!edit && (contactsComboBox.getItemCount() > 0)) {
             final ActionEvent event = new ActionEvent(contactsComboBox, 1, "Enable");
             listener.actionPerformed(event);
           } else {
@@ -203,7 +207,7 @@ public class Page2 {
       while (true) {
         final ActionListener[] listeners = nameTextField.getActionListeners();
         for (ActionListener listener : listeners) {
-          if ((nameTextField.getText().trim().length() > 0)
+          if (!edit && (nameTextField.getText().trim().length() > 0)
                   && (surnameTextField.getText().trim().length() > 0)
                   && (emailTextField.getText().trim().length() > 0)
                   && (phoneTextField.getText().trim().length() > 0)) {
@@ -241,7 +245,7 @@ public class Page2 {
       while (true) {
         final ActionListener[] listeners = contactsComboBox.getActionListeners();
         for (ActionListener listener : listeners) {
-          if (contactsComboBox.getItemCount() > 0) {
+          if (!edit && contactsComboBox.getItemCount() > 0) {
             final ActionEvent event = new ActionEvent(contactsComboBox, 1, "Enable");
             listener.actionPerformed(event);
           } else {
@@ -253,4 +257,39 @@ public class Page2 {
     }
   };
   // Edit button dynamic end
+
+  // Print contacts button dynamic start
+  private void dynamicPrintAllContactsButton() {
+    this.printAllContactsButton.setEnabled(false);
+    new Thread(printAllContactsTarget).start();
+    contactsComboBox.addActionListener(printAllContactsActionListener);
+  }
+
+  final ActionListener printAllContactsActionListener = new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+      if (e.getActionCommand().equalsIgnoreCase("Enable")) {
+        printAllContactsButton.setEnabled(true);
+      } else if (e.getActionCommand().equalsIgnoreCase("Disable")) {
+        printAllContactsButton.setEnabled(false);
+      }
+    }
+  };
+
+  final Runnable printAllContactsTarget = new Runnable() {
+    public void run() {
+      while (true) {
+        final ActionListener[] listeners = contactsComboBox.getActionListeners();
+        for (ActionListener listener : listeners) {
+          if (!edit && (contactsComboBox.getItemCount() > 0)) {
+            final ActionEvent event = new ActionEvent(contactsComboBox, 1, "Enable");
+            listener.actionPerformed(event);
+          } else {
+            final ActionEvent event = new ActionEvent(contactsComboBox, 1, "Disable");
+            listener.actionPerformed(event);
+          }
+        }
+      }
+    }
+  };
+  // Print contacts button dynamic end
 }
