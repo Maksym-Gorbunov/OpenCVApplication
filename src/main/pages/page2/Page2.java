@@ -1,48 +1,63 @@
 package main.pages.page2;
 
+import main.gui.Gui;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
 public class Page2 {
-  private JPanel labelsPanel2;
-  private JPanel fieldsPanel2;
-  private JPanel buttonsPanel2;
-  private JLabel nameLabel2;
-  private JLabel emailLabel2;
-  private JLabel phoneLabel2;
-  private JLabel surnameLabel2;
+  private static final long serialVersionUID = 1L;
+
+  //  private JPanel labelsPanel;
+//  private JPanel fieldsPanel;
+//  private JPanel buttonsPanel;
+//  private JLabel nameLabel;
+//  private JLabel emailLabel;
+//  private JLabel phoneLabel;
+//  private JLabel surnameLabel;
   private JButton addContactButton;
   private JButton printAllContactsButton;
-  private JButton testButton2;
-  private JTextField nameTextField2;
-  private JTextField phoneTextField2;
-  private JTextField emailTextField2;
-  private JTextField surnameTextField2;
+  private JButton testButton;
+  private JTextField nameTextField;
+  private JTextField phoneTextField;
+  private JTextField emailTextField;
+  private JTextField surnameTextField;
+  private JComboBox contactsComboBox;
+
   private ContactBook contactBook = new ContactBook();
+  private Gui gui;
 
+  public Page2(final Gui gui) {
+    this.gui = gui;
+    this.nameTextField = gui.getNameTextField2();
+    this.surnameTextField = gui.getSurnameTextField2();
+    this.phoneTextField = gui.getPhoneTextField2();
+    this.emailTextField = gui.getEmailTextField2();
+    this.addContactButton = gui.getAddContactButton2();
+    this.printAllContactsButton = gui.getPrintAllContactsButton2();
+    this.testButton = gui.getTestButton2();
+    this.contactsComboBox = gui.getContactsComboBox2();
 
-  public Page2(JButton addContactButton, JButton printAllContaktsButton, JButton testButton2, JTextField nameTextField2, JTextField phoneTextField2, JTextField emailTextField2, JTextField surnameTextField2) {
-    this.addContactButton = addContactButton;
-    this.printAllContactsButton = printAllContaktsButton;
-    this.testButton2 = testButton2;
-    this.nameTextField2 = nameTextField2;
-    this.phoneTextField2 = phoneTextField2;
-    this.emailTextField2 = emailTextField2;
-    this.surnameTextField2 = surnameTextField2;
+    dynamicAddContactButton();
+    addListeners();
+  }
 
+  private void dynamicAddContactButton() {
     this.addContactButton.setEnabled(false);
     new Thread(target).start();
-    nameTextField2.addActionListener(actionListener);
+    nameTextField.addActionListener(actionListener);
 
+  }
+
+  private void addListeners() {
     addContactButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        String name = nameTextField2.getText();
-        String surname = surnameTextField2.getText();
-        String email = emailTextField2.getText();
-        String phone = phoneTextField2.getText();
+        String name = nameTextField.getText();
+        String surname = surnameTextField.getText();
+        String email = emailTextField.getText();
+        String phone = phoneTextField.getText();
         if (!name.equals("") && !surname.equals("") && !email.equals("") && !phone.equals("")) {
           contactBook.getContacts().add(new Contact(name, surname, email, phone));
           System.out.println("New contact was added successfully!");
@@ -51,7 +66,7 @@ public class Page2 {
       }
     });
 
-    printAllContaktsButton.addActionListener(new ActionListener() {
+    printAllContactsButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         contactBook.printAllContacts();
@@ -60,11 +75,12 @@ public class Page2 {
     });
   }
 
+  // clear all text fields
   public void clearAllTextFields() {
-    nameTextField2.setText("");
-    surnameTextField2.setText("");
-    emailTextField2.setText("");
-    phoneTextField2.setText("");
+    nameTextField.setText("");
+    surnameTextField.setText("");
+    emailTextField.setText("");
+    phoneTextField.setText("");
   }
 
   // add button dynamic start
@@ -81,14 +97,16 @@ public class Page2 {
   final Runnable target = new Runnable() {
     public void run() {
       while (true) {
-        final ActionListener[] listeners = nameTextField2.getActionListeners();
+        final ActionListener[] listeners = nameTextField.getActionListeners();
         for (ActionListener listener : listeners) {
-          if ((nameTextField2.getText().trim().length() > 0) && (surnameTextField2.getText().trim().length() > 0)
-                  && (emailTextField2.getText().trim().length() > 0) && (phoneTextField2.getText().trim().length() > 0)) {
-            final ActionEvent event = new ActionEvent(nameTextField2, 1, "Enable");
+          if ((nameTextField.getText().trim().length() > 0)
+                  && (surnameTextField.getText().trim().length() > 0)
+                  && (emailTextField.getText().trim().length() > 0)
+                  && (phoneTextField.getText().trim().length() > 0)) {
+            final ActionEvent event = new ActionEvent(nameTextField, 1, "Enable");
             listener.actionPerformed(event);
           } else {
-            final ActionEvent event = new ActionEvent(nameTextField2, 1, "Disable");
+            final ActionEvent event = new ActionEvent(nameTextField, 1, "Disable");
             listener.actionPerformed(event);
           }
         }
