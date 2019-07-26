@@ -39,13 +39,16 @@ public class Page2 {
         String email = emailTextField2.getText();
         String phone = phoneTextField2.getText();
         // TODO: 7/25/2019 why add empty contact??? 
-        if (name != "" || surname != "" || email != "" || phone != "") {
+        if (!name.equals("") && !surname.equals("") && !email.equals("") && !phone.equals("")) {
           contactBook.getContacts().add(new Contact(name, surname, email, phone));
+          System.out.println("New contact was added successfully!");
+        } else {
+          System.out.println("cant add empty fields");
         }
-        System.out.println("New contact was added successfully!");
-
+        clearAllTextFields();
       }
     });
+
 
     printAllContaktsButton.addActionListener(new ActionListener() {
       @Override
@@ -54,5 +57,12 @@ public class Page2 {
         System.out.println("Total: " + contactBook.getContacts().size());
       }
     });
+  }
+
+  public void clearAllTextFields() {
+    nameTextField2.setText("");
+    surnameTextField2.setText("");
+    emailTextField2.setText("");
+    phoneTextField2.setText("");
   }
 }
