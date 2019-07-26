@@ -208,6 +208,18 @@
                       <text value="Delete"/>
                     </properties>
                   </component>
+                  <component id="1eb9d" class="javax.swing.JButton" binding="editButton2">
+                    <constraints/>
+                    <properties>
+                      <text value="Edit"/>
+                    </properties>
+                  </component>
+                  <component id="abb2c" class="javax.swing.JButton" binding="saveButton2">
+                    <constraints/>
+                    <properties>
+                      <text value="Save"/>
+                    </properties>
+                  </component>
                 </children>
               </grid>
               <hspacer id="9f8c7">

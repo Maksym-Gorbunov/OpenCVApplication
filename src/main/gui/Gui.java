@@ -38,6 +38,8 @@ public class Gui extends JFrame {
   private JTextField surnameTextField2;
   private JPanel contactsPanel2;
   private JComboBox contactsComboBox2;
+  private JButton editButton2;
+  private JButton saveButton2;
 
   private Page1 page1;
   private Page2 page2;
@@ -141,6 +143,14 @@ public class Gui extends JFrame {
 
   public JButton getDeleteButton2() {
     return deleteButton2;
+  }
+
+  public JButton getEditButton2() {
+    return editButton2;
+  }
+
+  public JButton getSaveButton2() {
+    return saveButton2;
   }
 
   public JTextField getNameTextField2() {

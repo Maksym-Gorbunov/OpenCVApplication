@@ -13,6 +13,8 @@ public class Page2 {
   private JButton addContactButton;
   private JButton printAllContactsButton;
   private JButton deleteButton;
+  private JButton editButton;
+  private JButton saveButton;
   private JTextField nameTextField;
   private JTextField phoneTextField;
   private JTextField emailTextField;
@@ -30,12 +32,16 @@ public class Page2 {
     this.phoneTextField = gui.getPhoneTextField2();
     this.emailTextField = gui.getEmailTextField2();
     this.addContactButton = gui.getAddContactButton2();
+    this.editButton = gui.getEditButton2();
+    this.saveButton = gui.getSaveButton2();
     this.printAllContactsButton = gui.getPrintAllContactsButton2();
     this.deleteButton = gui.getDeleteButton2();
     this.contactsComboBox = gui.getContactsComboBox2();
 
     dynamicAddContactButton();
     dynamicRemoveContactButton();
+    dynamicEditButton();
+
     addListeners();
 
     contactBook.add(new Contact("Max", "Fry", "max@mail.com", "0766533"));
@@ -163,4 +169,39 @@ public class Page2 {
     }
   };
   // Add button dynamic end
+
+  // Edit button dynamic start
+  private void dynamicEditButton() {
+    this.editButton.setEnabled(false);
+    new Thread(editTarget).start();
+    contactsComboBox.addActionListener(editActionListener);
+  }
+
+  final ActionListener editActionListener = new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+      if (e.getActionCommand().equalsIgnoreCase("Enable")) {
+        editButton.setEnabled(true);
+      } else if (e.getActionCommand().equalsIgnoreCase("Disable")) {
+        editButton.setEnabled(false);
+      }
+    }
+  };
+
+  final Runnable editTarget = new Runnable() {
+    public void run() {
+      while (true) {
+        final ActionListener[] listeners = contactsComboBox.getActionListeners();
+        for (ActionListener listener : listeners) {
+          if (contactsComboBox.getItemCount() > 0) {
+            final ActionEvent event = new ActionEvent(contactsComboBox, 1, "Enable");
+            listener.actionPerformed(event);
+          } else {
+            final ActionEvent event = new ActionEvent(contactsComboBox, 1, "Disable");
+            listener.actionPerformed(event);
+          }
+        }
+      }
+    }
+  };
+  // Edit button dynamic end
 }
