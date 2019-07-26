@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import org.apache.commons.lang3.ArrayUtils;
-
 
 public class Page2 {
   private JPanel labelsPanel2;
@@ -37,8 +35,6 @@ public class Page2 {
     this.addContactButton.setEnabled(false);
     new Thread(target).start();
     nameTextField2.addActionListener(actionListener);
-    surnameTextField2.addActionListener(actionListener);
-
 
     addContactButton.addActionListener(new ActionListener() {
       @Override
@@ -50,15 +46,10 @@ public class Page2 {
         if (!name.equals("") && !surname.equals("") && !email.equals("") && !phone.equals("")) {
           contactBook.getContacts().add(new Contact(name, surname, email, phone));
           System.out.println("New contact was added successfully!");
-        } else {
-          //toDO
-          // fix dynamic and remove this case
-          System.out.println("cant add empty fields");
         }
         clearAllTextFields();
       }
     });
-
 
     printAllContaktsButton.addActionListener(new ActionListener() {
       @Override
@@ -88,15 +79,10 @@ public class Page2 {
   };
 
   final Runnable target = new Runnable() {
-
     public void run() {
       while (true) {
-//        final ActionListener[] listeners = nameTextField2.getActionListeners();
-        ActionListener[] nameListeners = nameTextField2.getActionListeners();
-        ActionListener[] surnameListeners = surnameTextField2.getActionListeners();
-        ActionListener[] both = ArrayUtils.addAll(nameListeners, surnameListeners);
-
-        for (ActionListener listener : both) {
+        final ActionListener[] listeners = nameTextField2.getActionListeners();
+        for (ActionListener listener : listeners) {
           if ((nameTextField2.getText().trim().length() > 0) && (surnameTextField2.getText().trim().length() > 0)
                   && (emailTextField2.getText().trim().length() > 0) && (phoneTextField2.getText().trim().length() > 0)) {
             final ActionEvent event = new ActionEvent(nameTextField2, 1, "Enable");
@@ -106,17 +92,6 @@ public class Page2 {
             listener.actionPerformed(event);
           }
         }
-
-
-//        for (ActionListener listener : listeners) {
-//          if (nameTextField2.getText().trim().length() > 0) {
-//            final ActionEvent event = new ActionEvent(nameTextField2, 1, "Enable");
-//            listener.actionPerformed(event);
-//          } else {
-//            final ActionEvent event = new ActionEvent(nameTextField2, 1, "Disable");
-//            listener.actionPerformed(event);
-//          }
-//        }
       }
     }
   };
