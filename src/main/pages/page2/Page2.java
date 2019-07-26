@@ -31,6 +31,11 @@ public class Page2 {
     this.emailTextField2 = emailTextField2;
     this.surnameTextField2 = surnameTextField2;
 
+    this.addContaktButton.setEnabled(false);
+    new Thread(target).start();
+    nameTextField2.addActionListener(actionListener);
+
+
     addContaktButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -38,11 +43,12 @@ public class Page2 {
         String surname = surnameTextField2.getText();
         String email = emailTextField2.getText();
         String phone = phoneTextField2.getText();
-        // TODO: 7/25/2019 why add empty contact??? 
         if (!name.equals("") && !surname.equals("") && !email.equals("") && !phone.equals("")) {
           contactBook.getContacts().add(new Contact(name, surname, email, phone));
           System.out.println("New contact was added successfully!");
         } else {
+          //toDO
+          // fix dynamic and remove this case
           System.out.println("cant add empty fields");
         }
         clearAllTextFields();
@@ -65,4 +71,34 @@ public class Page2 {
     emailTextField2.setText("");
     phoneTextField2.setText("");
   }
+
+  // add button dynamic start
+  final ActionListener actionListener = new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+      if (e.getActionCommand().equalsIgnoreCase("Enable")) {
+        addContaktButton.setEnabled(true);
+      } else if (e.getActionCommand().equalsIgnoreCase("Disable")) {
+        addContaktButton.setEnabled(false);
+      }
+    }
+  };
+
+  final Runnable target = new Runnable() {
+
+    public void run() {
+      while (true) {
+        final ActionListener[] listeners = nameTextField2.getActionListeners();
+        for (ActionListener listener : listeners) {
+          if (nameLabel2.getText().trim().length() > 0) {
+            final ActionEvent event = new ActionEvent(nameLabel2, 1, "Enable");
+            listener.actionPerformed(event);
+          } else {
+            final ActionEvent event = new ActionEvent(nameLabel2, 1, "Disable");
+            listener.actionPerformed(event);
+          }
+        }
+      }
+    }
+  };
+  // add button dynamic end
 }
