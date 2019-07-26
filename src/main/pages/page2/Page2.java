@@ -12,8 +12,8 @@ public class Page2 {
   private JLabel emailLabel2;
   private JLabel phoneLabel2;
   private JLabel surnameLabel2;
-  private JButton addContaktButton;
-  private JButton printAllContaktsButton;
+  private JButton addContactButton;
+  private JButton printAllContactsButton;
   private JButton testButton2;
   private JTextField nameTextField2;
   private JTextField phoneTextField2;
@@ -22,21 +22,21 @@ public class Page2 {
   private ContactBook contactBook = new ContactBook();
 
 
-  public Page2(JButton addContaktButton, JButton printAllContaktsButton, JButton testButton2, JTextField nameTextField2, JTextField phoneTextField2, JTextField emailTextField2, JTextField surnameTextField2) {
-    this.addContaktButton = addContaktButton;
-    this.printAllContaktsButton = printAllContaktsButton;
+  public Page2(JButton addContactButton, JButton printAllContaktsButton, JButton testButton2, JTextField nameTextField2, JTextField phoneTextField2, JTextField emailTextField2, JTextField surnameTextField2) {
+    this.addContactButton = addContactButton;
+    this.printAllContactsButton = printAllContaktsButton;
     this.testButton2 = testButton2;
     this.nameTextField2 = nameTextField2;
     this.phoneTextField2 = phoneTextField2;
     this.emailTextField2 = emailTextField2;
     this.surnameTextField2 = surnameTextField2;
 
-    this.addContaktButton.setEnabled(false);
+    this.addContactButton.setEnabled(false);
     new Thread(target).start();
     nameTextField2.addActionListener(actionListener);
 
 
-    addContaktButton.addActionListener(new ActionListener() {
+    addContactButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         String name = nameTextField2.getText();
@@ -76,9 +76,9 @@ public class Page2 {
   final ActionListener actionListener = new ActionListener() {
     public void actionPerformed(ActionEvent e) {
       if (e.getActionCommand().equalsIgnoreCase("Enable")) {
-        addContaktButton.setEnabled(true);
+        addContactButton.setEnabled(true);
       } else if (e.getActionCommand().equalsIgnoreCase("Disable")) {
-        addContaktButton.setEnabled(false);
+        addContactButton.setEnabled(false);
       }
     }
   };
@@ -89,11 +89,11 @@ public class Page2 {
       while (true) {
         final ActionListener[] listeners = nameTextField2.getActionListeners();
         for (ActionListener listener : listeners) {
-          if (nameLabel2.getText().trim().length() > 0) {
-            final ActionEvent event = new ActionEvent(nameLabel2, 1, "Enable");
+          if (nameTextField2.getText().trim().length() > 0) {
+            final ActionEvent event = new ActionEvent(nameTextField2, 1, "Enable");
             listener.actionPerformed(event);
           } else {
-            final ActionEvent event = new ActionEvent(nameLabel2, 1, "Disable");
+            final ActionEvent event = new ActionEvent(nameTextField2, 1, "Disable");
             listener.actionPerformed(event);
           }
         }

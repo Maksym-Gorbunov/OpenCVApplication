@@ -189,16 +189,16 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="a4c8d" class="javax.swing.JButton" binding="addContaktButton">
+                  <component id="a4c8d" class="javax.swing.JButton" binding="addContactButton">
                     <constraints/>
                     <properties>
-                      <text value="Add contakt"/>
+                      <text value="Add contact"/>
                     </properties>
                   </component>
-                  <component id="4074c" class="javax.swing.JButton" binding="printAllContaktsButton" default-binding="true">
+                  <component id="4074c" class="javax.swing.JButton" binding="printAllContactsButton" default-binding="true">
                     <constraints/>
                     <properties>
-                      <text value="Print all contakts"/>
+                      <text value="Print all contacts"/>
                     </properties>
                   </component>
                   <component id="55935" class="javax.swing.JButton" binding="testButton2">
