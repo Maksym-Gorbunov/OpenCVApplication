@@ -192,24 +192,19 @@
                   <component id="a4c8d" class="javax.swing.JButton" binding="addContactButton2">
                     <constraints/>
                     <properties>
-                      <background color="-15225046"/>
-                      <foreground color="-197380"/>
                       <text value="Add contact"/>
                     </properties>
                   </component>
                   <component id="4074c" class="javax.swing.JButton" binding="printAllContactsButton2" default-binding="true">
                     <constraints/>
                     <properties>
-                      <background color="-13401089"/>
-                      <foreground color="-197380"/>
                       <text value="Print all contacts"/>
                     </properties>
                   </component>
                   <component id="55935" class="javax.swing.JButton" binding="deleteButton2">
                     <constraints/>
                     <properties>
-                      <background color="-1900544"/>
-                      <foreground color="-197380"/>
+                      <enabled value="true"/>
                       <text value="Delete"/>
                     </properties>
                   </component>

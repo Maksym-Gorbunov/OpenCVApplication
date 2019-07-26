@@ -10,13 +10,6 @@ import java.awt.event.ActionListener;
 public class Page2 {
   private static final long serialVersionUID = 1L;
 
-  //  private JPanel labelsPanel;
-//  private JPanel fieldsPanel;
-//  private JPanel buttonsPanel;
-//  private JLabel nameLabel;
-//  private JLabel emailLabel;
-//  private JLabel phoneLabel;
-//  private JLabel surnameLabel;
   private JButton addContactButton;
   private JButton printAllContactsButton;
   private JButton deleteButton;
@@ -29,6 +22,7 @@ public class Page2 {
   private ContactBook contactBook = new ContactBook();
   private Gui gui;
 
+  // Constructor
   public Page2(final Gui gui) {
     this.gui = gui;
     this.nameTextField = gui.getNameTextField2();
@@ -41,24 +35,16 @@ public class Page2 {
     this.contactsComboBox = gui.getContactsComboBox2();
 
     dynamicAddContactButton();
+    dynamicRemoveContactButton();
     addListeners();
-
 
     contactBook.add(new Contact("Max", "Fry", "max@mail.com", "0766533"));
     contactBook.add(new Contact("Bob", "Person", "bob@mail.com", "0765013"));
     contactBook.getContacts().stream().forEach(c -> contactsComboBox.addItem(c));
     //contactsComboBox.setSelectedIndex(0);
-
-
   }
 
-  private void dynamicAddContactButton() {
-    this.addContactButton.setEnabled(false);
-    new Thread(target).start();
-    nameTextField.addActionListener(actionListener);
-
-  }
-
+  // Add elements listeners
   private void addListeners() {
     addContactButton.addActionListener(new ActionListener() {
       @Override
@@ -97,7 +83,7 @@ public class Page2 {
     });
   }
 
-  // clear all text fields
+  // Clear all text fields
   public void clearAllTextFields() {
     nameTextField.setText("");
     surnameTextField.setText("");
@@ -105,8 +91,49 @@ public class Page2 {
     phoneTextField.setText("");
   }
 
-  // add button dynamic start
-  final ActionListener actionListener = new ActionListener() {
+  // Delete button dynamic start
+  private void dynamicRemoveContactButton() {
+    this.deleteButton.setEnabled(false);
+    new Thread(removeTarget).start();
+    contactsComboBox.addActionListener(removeActionListener);
+  }
+
+  final ActionListener removeActionListener = new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+      if (e.getActionCommand().equalsIgnoreCase("Enable")) {
+        deleteButton.setEnabled(true);
+      } else if (e.getActionCommand().equalsIgnoreCase("Disable")) {
+        deleteButton.setEnabled(false);
+      }
+    }
+  };
+
+  final Runnable removeTarget = new Runnable() {
+    public void run() {
+      while (true) {
+        final ActionListener[] listeners = contactsComboBox.getActionListeners();
+        for (ActionListener listener : listeners) {
+          if ((contactsComboBox.getItemCount() > 0)) {
+            final ActionEvent event = new ActionEvent(contactsComboBox, 1, "Enable");
+            listener.actionPerformed(event);
+          } else {
+            final ActionEvent event = new ActionEvent(contactsComboBox, 1, "Disable");
+            listener.actionPerformed(event);
+          }
+        }
+      }
+    }
+  };
+  // Delete button dynamic end
+
+  // Add button dynamic start
+  private void dynamicAddContactButton() {
+    this.addContactButton.setEnabled(false);
+    new Thread(addTarget).start();
+    nameTextField.addActionListener(addActionListener);
+  }
+
+  final ActionListener addActionListener = new ActionListener() {
     public void actionPerformed(ActionEvent e) {
       if (e.getActionCommand().equalsIgnoreCase("Enable")) {
         addContactButton.setEnabled(true);
@@ -116,7 +143,7 @@ public class Page2 {
     }
   };
 
-  final Runnable target = new Runnable() {
+  final Runnable addTarget = new Runnable() {
     public void run() {
       while (true) {
         final ActionListener[] listeners = nameTextField.getActionListeners();
@@ -135,5 +162,5 @@ public class Page2 {
       }
     }
   };
-  // add button dynamic end
+  // Add button dynamic end
 }
