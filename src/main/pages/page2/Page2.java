@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import org.apache.commons.lang3.ArrayUtils;
+
+
 public class Page2 {
   private JPanel labelsPanel2;
   private JPanel fieldsPanel2;
@@ -34,6 +37,7 @@ public class Page2 {
     this.addContactButton.setEnabled(false);
     new Thread(target).start();
     nameTextField2.addActionListener(actionListener);
+    surnameTextField2.addActionListener(actionListener);
 
 
     addContactButton.addActionListener(new ActionListener() {
@@ -87,9 +91,14 @@ public class Page2 {
 
     public void run() {
       while (true) {
-        final ActionListener[] listeners = nameTextField2.getActionListeners();
-        for (ActionListener listener : listeners) {
-          if (nameTextField2.getText().trim().length() > 0) {
+//        final ActionListener[] listeners = nameTextField2.getActionListeners();
+        ActionListener[] nameListeners = nameTextField2.getActionListeners();
+        ActionListener[] surnameListeners = surnameTextField2.getActionListeners();
+        ActionListener[] both = ArrayUtils.addAll(nameListeners, surnameListeners);
+
+        for (ActionListener listener : both) {
+          if ((nameTextField2.getText().trim().length() > 0) && (surnameTextField2.getText().trim().length() > 0)
+                  && (emailTextField2.getText().trim().length() > 0) && (phoneTextField2.getText().trim().length() > 0)) {
             final ActionEvent event = new ActionEvent(nameTextField2, 1, "Enable");
             listener.actionPerformed(event);
           } else {
@@ -97,6 +106,17 @@ public class Page2 {
             listener.actionPerformed(event);
           }
         }
+
+
+//        for (ActionListener listener : listeners) {
+//          if (nameTextField2.getText().trim().length() > 0) {
+//            final ActionEvent event = new ActionEvent(nameTextField2, 1, "Enable");
+//            listener.actionPerformed(event);
+//          } else {
+//            final ActionEvent event = new ActionEvent(nameTextField2, 1, "Disable");
+//            listener.actionPerformed(event);
+//          }
+//        }
       }
     }
   };
