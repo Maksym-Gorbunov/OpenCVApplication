@@ -1,5 +1,6 @@
 package main.pages.page2;
 
+import main.db.DB;
 import main.gui.Gui;
 
 import javax.swing.*;
@@ -9,7 +10,6 @@ import java.awt.event.ActionListener;
 
 public class Page2 {
   private static final long serialVersionUID = 1L;
-
   private JButton addButton;
   private JButton printButton;
   private JButton deleteButton;
@@ -21,10 +21,8 @@ public class Page2 {
   private JTextField emailTextField;
   private JTextField surnameTextField;
   private JComboBox<Contact> contactsComboBox;
-
   private ContactBook contactBook = new ContactBook();
   private Gui gui;
-
   private boolean edit = false;
   private Contact editContact = new Contact();
 
@@ -45,16 +43,20 @@ public class Page2 {
 
     dynamicEditDeletePrintButtons();
     dynamicAddSaveButtons();
-
     addListeners();
+
+    temp();
+
+    init();
+  }
+
+  private void temp() {
+//    DB.populateContactBook();
+
 
     contactBook.add(new Contact("Max", "Fry", "max@mail.com", "0766533"));
     contactBook.add(new Contact("Bob", "Person", "bob@mail.com", "0765013"));
     contactBook.getContacts().stream().forEach(c -> contactsComboBox.addItem(c));
-    init();
-
-
-//    System.out.println(nameTextField.getText().equals(contact.getName()));
   }
 
   // Initialize defaults values on start
@@ -157,6 +159,7 @@ public class Page2 {
     });
   }
 
+
   // Clear all text fields
   public void clearAllTextFields() {
     nameTextField.setText("");
@@ -254,14 +257,8 @@ public class Page2 {
             }
             // save case
             if (edit) {
-              if (!(nameTextField.getText().equals(editContact.getName())
-                      || !(surnameTextField.getText().equals(editContact.getSurname())
-                      || !(emailTextField.getText().equals(editContact.getEmail()))
-                      || !(phoneTextField.getText().equals(editContact.getPhone()))))) {
-                final ActionEvent saveEvent = new ActionEvent(nameTextField, 1, "SaveEnable");
-                listener.actionPerformed(saveEvent);
-
-              }
+              final ActionEvent saveEvent = new ActionEvent(nameTextField, 1, "SaveEnable");
+              listener.actionPerformed(saveEvent);
             }
           } else {
             final ActionEvent event = new ActionEvent(nameTextField, 1, "Disable");
