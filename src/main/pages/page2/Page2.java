@@ -73,13 +73,14 @@ public class Page2 {
         String email = emailTextField.getText();
         String phone = phoneTextField.getText();
         if (!name.equals("") && !surname.equals("") && !email.equals("") && !phone.equals("")) {
-
-          //toDo check if exist
-
           Contact contact = new Contact(name, surname, email, phone);
-          contactsComboBox.addItem(contact);
-          contactBook.add(contact);
-          System.out.println("New contact was added successfully!");
+          if (!contactBook.getContacts().contains(contact)) {
+            contactsComboBox.addItem(contact);
+            contactBook.add(contact);
+            System.out.println("New contact was added successfully!");
+          } else {
+            System.out.println("Contact already exist");
+          }
         }
         clearAllTextFields();
       }
