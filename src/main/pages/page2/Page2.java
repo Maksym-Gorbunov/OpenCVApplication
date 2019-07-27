@@ -26,6 +26,7 @@ public class Page2 {
   private Gui gui;
 
   private boolean edit = false;
+  private Contact editContact = new Contact();
 
   // Constructor
   public Page2(final Gui gui) {
@@ -51,6 +52,9 @@ public class Page2 {
     contactBook.add(new Contact("Bob", "Person", "bob@mail.com", "0765013"));
     contactBook.getContacts().stream().forEach(c -> contactsComboBox.addItem(c));
     init();
+
+
+//    System.out.println(nameTextField.getText().equals(contact.getName()));
   }
 
   // Initialize defaults values on start
@@ -105,6 +109,9 @@ public class Page2 {
       public void actionPerformed(ActionEvent e) {
         edit = true;
         Contact contact = (Contact) contactsComboBox.getSelectedItem();
+        editContact = contact;
+//        currentContact = contact;
+
         nameTextField.setText(contact.getName());
         surnameTextField.setText(contact.getSurname());
         phoneTextField.setText(contact.getPhone());
@@ -246,8 +253,14 @@ public class Page2 {
             }
             // save case
             if (edit) {
-              final ActionEvent saveEvent = new ActionEvent(nameTextField, 1, "SaveEnable");
-              listener.actionPerformed(saveEvent);
+              if (!(nameTextField.getText().equals(editContact.getName())
+                      && !(surnameTextField.getText().equals(editContact.getSurname())
+                      && !(emailTextField.getText().equals(editContact.getEmail()))
+                      && !(phoneTextField.getText().equals(editContact.getPhone()))))) {
+                final ActionEvent saveEvent = new ActionEvent(nameTextField, 1, "SaveEnable");
+                listener.actionPerformed(saveEvent);
+
+              }
             }
           } else {
             final ActionEvent event = new ActionEvent(nameTextField, 1, "Disable");

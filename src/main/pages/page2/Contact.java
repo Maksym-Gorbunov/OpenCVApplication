@@ -7,6 +7,13 @@ public class Contact {
   private String email;
   private String phone;
 
+  public Contact() {
+    this.name = "";
+    this.surname = "";
+    this.email = "";
+    this.phone = "";
+  }
+
   public Contact(String name, String surname, String email, String phone) {
     this.name = name;
     this.surname = surname;
