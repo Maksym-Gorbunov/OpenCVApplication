@@ -254,9 +254,9 @@ public class Page2 {
             // save case
             if (edit) {
               if (!(nameTextField.getText().equals(editContact.getName())
-                      && !(surnameTextField.getText().equals(editContact.getSurname())
-                      && !(emailTextField.getText().equals(editContact.getEmail()))
-                      && !(phoneTextField.getText().equals(editContact.getPhone()))))) {
+                      || !(surnameTextField.getText().equals(editContact.getSurname())
+                      || !(emailTextField.getText().equals(editContact.getEmail()))
+                      || !(phoneTextField.getText().equals(editContact.getPhone()))))) {
                 final ActionEvent saveEvent = new ActionEvent(nameTextField, 1, "SaveEnable");
                 listener.actionPerformed(saveEvent);
 
