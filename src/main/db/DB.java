@@ -19,7 +19,7 @@ public class DB {
   public DB() {
 
     MongoClientURI uri = new MongoClientURI(
-            "mongodb+srv://ithsUser:<ithsPassword>@iths-ygc8w.mongodb.net/test?retryWrites=true&w=majority");
+            "mongodb+srv://ithsUser:ithsPassword@iths-ygc8w.mongodb.net/test?retryWrites=true&w=majority");
 
     MongoClient mongoClient = new MongoClient(uri);
     MongoDatabase database = mongoClient.getDatabase("iths");
