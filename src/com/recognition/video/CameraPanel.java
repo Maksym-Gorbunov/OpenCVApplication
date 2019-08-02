@@ -1,5 +1,6 @@
 package com.recognition.video;
 
+import javafx.scene.paint.Color;
 import org.opencv.core.Mat;
 
 import java.awt.image.BufferedImage;
@@ -29,10 +30,15 @@ public class CameraPanel extends JPanel {
   }
 
   public void paintComponent(Graphics g) {
+    System.out.println("ppppppppppppppppppppppppppppp");
     super.paintComponent(g);
     if (this.bufferedImage == null) {
       return;
     }
     g.drawImage(this.bufferedImage, 10, 10, this.bufferedImage.getWidth(), this.bufferedImage.getHeight(), null);
   }
+
+//  public void setBackground(Color color) {
+//    g.setBackground(color);
+//  }
 }

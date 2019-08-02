@@ -1,5 +1,6 @@
 package com.recognition.video;
 
+import javafx.scene.paint.Color;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.videoio.VideoCapture;
@@ -50,14 +51,19 @@ public class MainFrame2 extends JFrame {
     */
 
 
-    System.gc();
-    for (int i = 0; i < 200; i++) {
-      cameraPanel.repaint();
+//    cameraPanel.setBackground(Color.BLUE);
+//    System.gc();
+//    for (int i = 0; i < 200; i++) {
+//      cameraPanel.repaint();
+//
+//    }
+//    videoCapture.read(webcamImage);
+//    setSize(webcamImage.width() + 50, webcamImage.height() + 70);
+//    cameraPanel.convertMatToImage(webcamImage);
 
-    }
-    videoCapture.read(webcamImage);
-    setSize(webcamImage.width() + 50, webcamImage.height() + 70);
-    cameraPanel.convertMatToImage(webcamImage);
+
+
+
 
 
 //    if (videoCapture.isOpened()) {
