@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+// Main Gui class
 public class MainFrame extends JFrame {
   private static final long serialVersionUID = 1L;
   private ImagePanel imagePanel;
@@ -64,8 +65,8 @@ public class MainFrame extends JFrame {
       public void actionPerformed(ActionEvent arg0) {
         int action = JOptionPane.showConfirmDialog(MainFrame.this, Constants.EXIT_WARNING);
         if(action == JOptionPane.OK_OPTION){
-            System.gc();
-            System.exit(0);
+          System.gc();
+          System.exit(0);
         }
       }
     });
