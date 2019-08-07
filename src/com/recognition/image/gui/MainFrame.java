@@ -29,6 +29,7 @@ public class MainFrame extends JFrame {
     setVisible(true);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(this);
+    setResizable(false);
   }
 
   public JMenuBar createMenuBar(){
